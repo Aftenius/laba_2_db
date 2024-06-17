@@ -2,8 +2,9 @@ const Mysql = require('sync-mysql');
 const connection = new Mysql({
     host: 'localhost',
     user: 'root',
-    password: '2001', // Убедитесь, что пароль верен
-    database: 'Observatory'
+    password: 'root', // Убедитесь, что пароль верен
+    database: 'Observatory',
+    charset: 'utf8mb4'
 });
 
 const path = require('path');
