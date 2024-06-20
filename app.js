@@ -2,7 +2,7 @@ const Mysql = require('sync-mysql');
 const connection = new Mysql({
     host: 'localhost',
     user: 'root',
-    password: 'root', // Убедитесь, что пароль верен
+    password: 'root',
     database: 'Observatory',
     charset: 'utf8mb4'
 });
@@ -26,6 +26,10 @@ function reqPost(request, response) {
                             VALUES ("${post['col1']}", 3.4, 5, 30, 2, 28, "Новый сектор")`;
             const results = connection.query(sInsert);
             console.log('Done. Hint: ' + sInsert);
+
+            // Вызов процедуры JoinTables после вставки данных
+            const joinResults = connection.query('CALL JoinTables()');
+            console.log('JoinTables procedure called.');
         });
     }
 }
